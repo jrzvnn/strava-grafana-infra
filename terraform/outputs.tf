@@ -10,9 +10,10 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
 
-
-output "nginx_public_ip" {
-  value = module.ec2.nginx_public_ip
+output "grafana_sg_id" {
+  value = module.sg_grafana.sg_id
 }
 
-
+output "nginx_sg_id" {
+  value = module.sg_nginx.sg_id
+}
