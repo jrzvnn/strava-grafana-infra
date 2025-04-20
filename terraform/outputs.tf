@@ -10,3 +10,9 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
 
+
+output "nginx_public_ip" {
+  value = module.ec2.nginx_public_ip
+}
+
+
