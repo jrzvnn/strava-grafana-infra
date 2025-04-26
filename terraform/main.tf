@@ -1,3 +1,7 @@
+################################################################################
+# Resource: aws_vpc
+################################################################################
+
 module "vpc" {
   source          = "./modules/vpc"
   project         = var.project
@@ -7,10 +11,26 @@ module "vpc" {
   azs             = var.azs
 }
 
+################################################################################
+# Resource: aws_security_group
+################################################################################
+
 module "sg_nginx" {
   source  = "./modules/sg"
   sg_name = "nginx-sg" 
   vpc_id  = module.vpc.vpc_id
+}
+
+module "nginx_ingress_port_22" {
+  source = "./modules/sg_rules"
+  rule_type                 = "ingress"
+  sg_id                     = module.sg_nginx.sg_id
+  source_sg                 = "" 
+  source_ip                 = ["0.0.0.0/0"]
+  protocol                  = "TCP"
+  from_port                 = "22"
+  to_port                   = "22"
+  description               = "Allow all port 22 inbound traffic to Nginx"
 }
 
 module "nginx_ingress_port_80" {
@@ -56,6 +76,19 @@ module "grafana_ingress_port_3000" {
   description               = "Allow inbound traffic to Grafana from Nginx only"
 }
 
+module "grafana_ingress_port_22" {
+  source = "./modules/sg_rules"
+  rule_type                 = "ingress"
+  sg_id                     = module.sg_grafana.sg_id
+  source_sg                 = "" 
+  source_ip                 = ["0.0.0.0/0"]
+  protocol                  = "TCP"
+  from_port                 = "22"
+  to_port                   = "22"
+  description               = "Allow all port 22 inbound traffic to Nginx"
+}
+
+
 module "grafana_egress_open" {
   source = "./modules/sg_rules"
   rule_type                 = "egress"
@@ -68,3 +101,28 @@ module "grafana_egress_open" {
   description               = "Allow any outbound traffic from grafana"
 }
 
+################################################################################
+# Resource: aws_instance
+################################################################################
+
+module "ec2_nginx" {
+  source        = "./modules/ec2"
+  ami_id        = var.ami_id
+  instance_type = var.instance_type
+  subnet_id     = module.vpc.public_subnet_ids[0]
+  key_name      = var.key_name
+  attach_sg     = module.sg_nginx.sg_id
+  name          = "nginx"
+  attach_eip    = true
+}
+
+module "ec2_grafana" {
+  source        = "./modules/ec2"
+  ami_id        = var.ami_id
+  instance_type = var.instance_type
+  subnet_id     = module.vpc.private_subnet_ids[0]
+  key_name      = var.key_name
+  attach_sg     = module.sg_grafana.sg_id
+  name          = "grafana"
+  attach_eip    = false
+}

@@ -1,5 +1,5 @@
 resource "aws_security_group_rule" "source_sg" {
-  count                     = var.enable_source_sg != 0 ? 1 : 0
+  count                     = var.enable_source_sg ? 1 : 0
   type                      = var.rule_type
   security_group_id         = var.sg_id
   source_security_group_id  = var.source_sg 
