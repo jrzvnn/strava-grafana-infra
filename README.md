@@ -47,7 +47,7 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
     ```
 4. Access Grafana:
     - Open your browser and visit `http://<Elastic IP of NGINX EC2>`.
-    - Login to Grafana user:`admin` pass`admin` (default).
+    - Login to Grafana username:`admin` password:`admin` (default).
 5. Set up the Strava plugin and start monitoring your fitness data!
     - [Strava Plugin for Grafana](https://grafana.com/grafana/plugins/grafana-strava-datasource/)
 
