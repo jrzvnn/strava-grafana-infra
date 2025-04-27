@@ -63,7 +63,7 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
 
 ## 📝 License
 
-This project is licensed under the MIT License. [LICENSE](LICENSE)
+This project is licensed under the MIT [LICENSE](LICENSE).
 
 ## 💬 Contribute
 Feel free to fork, clone, and suggest improvements!
