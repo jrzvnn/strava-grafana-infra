@@ -65,8 +65,11 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
 
 This project is licensed under the MIT License. [LICENSE](LICENSE)
 
-## 💬 Contributing
+## 💬 Contribute
 Feel free to fork, clone, and suggest improvements!
+
+## 💡 Credits
+- [Michel van der Zijden - Strava activities in Grafana](https://www.michelvanderzijden.nl/strava-activities-in-grafana/)
 
 ---
 
