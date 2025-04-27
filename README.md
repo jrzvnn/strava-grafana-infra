@@ -2,8 +2,7 @@
 
 ![actual-dashboard](actual-dashboard.png)
 
-This project provisions a **fully scalable infrastructure for Grafana** integrated with **Strava API**, all orchestrated through **Terraform** on AWS.  
-It sets up an automated environment where you can visualize your Strava fitness data through a personalized Grafana dashboard.
+This project provisions a **fully scalable infrastructure for Grafana** integrated with **Strava API**, all orchestrated through **Terraform** on AWS. It sets up an automated environment where you can visualize your Strava fitness data through a personalized Grafana dashboard.
 
 **Ideal for**:  
 🏃 Runners and cyclists wanting personal analytics  
