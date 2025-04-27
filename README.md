@@ -61,6 +61,10 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
 - [ ] HTTPS and Domain Setup for NGINX Encryption
 - [ ] Containerization of the Setup
 
+## 📝 License
+
+This project is licensed under the MIT License. [LICENSE](LICENSE)
+
 ## 💬 Contributing
 Feel free to fork, clone, and suggest improvements!
 
