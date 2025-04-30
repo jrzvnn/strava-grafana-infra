@@ -1,0 +1,6 @@
+---
+- name: Install and configure Grafana on EC2
+  hosts: grafana_instance
+  become: true
+  roles:
+    - grafana
