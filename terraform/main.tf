@@ -7,7 +7,6 @@ module "vpc" {
   project         = var.project
   vpc_cidr        = var.vpc_cidr
   public_subnets  = var.public_subnets
-  private_subnets = var.private_subnets
   azs             = var.azs
 }
 
@@ -112,6 +111,7 @@ module "ec2_nginx" {
   subnet_id     = module.vpc.public_subnet_ids[0]
   key_name      = var.key_name
   attach_sg     = module.sg_nginx.sg_id
+  assign_pub_ip = false
   name          = "nginx"
   attach_eip    = true
 }
@@ -120,9 +120,10 @@ module "ec2_grafana" {
   source        = "./modules/ec2"
   ami_id        = var.ami_id
   instance_type = var.instance_type
-  subnet_id     = module.vpc.private_subnet_ids[0]
+  subnet_id     = module.vpc.public_subnet_ids[0]
   key_name      = var.key_name
   attach_sg     = module.sg_grafana.sg_id
+  assign_pub_ip = true
   name          = "grafana"
   attach_eip    = false
 }

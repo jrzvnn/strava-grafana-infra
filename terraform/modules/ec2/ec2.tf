@@ -4,7 +4,7 @@ resource "aws_instance" "ec2_instance" {
   subnet_id                   = var.subnet_id
   key_name                    = var.key_name
   security_groups             = [var.attach_sg]
-  associate_public_ip_address = false
+  associate_public_ip_address = var.assign_pub_ip
 
   tags = {
     Name = var.name
