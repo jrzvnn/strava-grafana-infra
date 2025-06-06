@@ -1,0 +1,43 @@
+---
+- name: Install NGINX
+  become: true
+  yum:
+    name: nginx
+    state: present
+
+- name: Start and enable NGINX
+  become: true
+  systemd:
+    name: nginx
+    enabled: true
+    state: started
+
+- name: Ensure .ssh directory exists
+  file:
+    path: /home/ec2-user/.ssh
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: '0700'
+
+- name: Copy SSH private key to NGINX host (for proxying to Grafana)
+  copy:
+    src: "{{ lookup('env', 'HOME') }}/.ssh/ec2-ssh-key.pem"
+    dest: /home/ec2-user/.ssh/ec2-ssh-key.pem
+    owner: ec2-user
+    group: ec2-user
+    mode: '0600'
+
+- name: Upload custom NGINX configuration
+  become: true
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/grafana.conf
+    mode: '0644'
+
+- name: Reload NGINX
+  become: true
+  systemd:
+    name: nginx
+    enabled: true
+    state: reloaded

@@ -1,0 +1,11 @@
+---
+- name: Setup NGINX
+  hosts: nginx
+  become: true
+  roles:
+    - nginx
+- name: Setup Grafana
+  hosts: grafana
+  become: true
+  roles:
+    - grafana
