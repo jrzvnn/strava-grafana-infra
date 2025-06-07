@@ -4,8 +4,8 @@ set -e
 
 echo "[*] Running Terraform..."
  cd terraform
-# terraform init
-# terraform apply -auto-approve
+ terraform init
+ terraform apply -auto-approve
 
 echo "[*] Getting Terraform outputs..."
 echo "[*] Generating Ansible inventory..."

@@ -12,10 +12,10 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
 ## 🔎 Overview
 
 - **Terraform** deploys the infrastructure on AWS.
-- **NGINX** server acts as a reverse proxy for Grafana access from the public internet.
-- **Grafana** instance is hosted on a **private subnet** for security.
+- **Ansible** automates the installation and configuration of servers.
+- **Grafana** server provides powerful dashboards for Strava data.
+- **NGINX** server in front acts as a **reverse proxy** for Grafana.
 - **Elastic IP** is attached to the NGINX EC2 instance for public access.
-- **Manual setup** is currently used for Grafana installation.
 - **Strava plugin** is configured inside Grafana for activity tracking.
 
 ## 🔑 Requirements
@@ -39,11 +39,9 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
     ami_id        = "your-ami-id"          # Recommended: Amazon Linux 2023
     instance_type = "t2.micro"
     ```
-3. Initialize and apply Terraform:
+3. Deploy the infrastructure using the `deploy.sh` script:
     ```bash
-    terraform init
-    terraform apply
-
+    sudo ./deploy.sh
     ```
 4. Access Grafana:
     - Open your browser and visit `http://<Elastic IP of NGINX EC2>`.
@@ -56,8 +54,8 @@ This project provisions a **fully scalable infrastructure for Grafana** integrat
 
 - [x] Initial Terraform Infrastructure Provisioning
 - [x] Manual Grafana, NGINX Setup, and Strava Integration
-- [ ] Automated Grafana Setup via Ansible
-- [ ] GitHub Actions for IaC Automation
+- [x] Automated Grafana and NGINX Setup via Ansible
+- [ ] GitHub Actions for CI Automation of Infrastructure
 - [ ] HTTPS and Domain Setup for NGINX Encryption
 - [ ] Containerization of the Setup
 
